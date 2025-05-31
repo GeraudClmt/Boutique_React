@@ -11,3 +11,14 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.tailleProduct{
+  width: 30em;
+}
+.tailleDivImgProduct{
+  height: 10em;
+}
+.tailleImgProducts{
+  width: 10em;
+  height: 10em;
+}
