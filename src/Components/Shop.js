@@ -2,7 +2,7 @@ import { useEffect, useState } from "react"
 
 function Shop() {
     const [products, setProduct] = useState([])
-    console.log(sessionStorage.getItem("panier"))
+    
     useEffect(() => {
         fetch("https://fakestoreapi.com/products")
             .then(response => response.json())
@@ -27,24 +27,24 @@ function Shop() {
                     <img className="tailleImgProducts object-fit-fill" src={product.image} alt={"image-produit-" + product.id} />
                 </div>
                 <div className="mt-4 d-flex justify-content-center">
-                    <button type="button" className="btn btn-success" onClick={() =>addElementToCart(product.title, product.price, product.image)}>Ajouter au panier</button>
+                    <button type="button" className="btn btn-success" onClick={() =>addElementToCart(product.id, product.title, product.price, product.image)}>Ajouter au panier</button>
                 </div>
             </div>))}
         </div>
     </div>)
 }
 
-function addElementToCart(title, price, imgUrl){
+function addElementToCart(id, title, price, imgUrl){
     let session = JSON.parse(sessionStorage.getItem("panier"))
     
     const order = {
+        "id" : id,
         "title" : title,
         "price" : price,
         "imgUrl" : imgUrl
     }
     
     session.push(order)
-    console.log(session)
     sessionStorage.setItem("panier", JSON.stringify(session))
 }
 export default Shop
